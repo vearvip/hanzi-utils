@@ -33,6 +33,7 @@ console.log(variants);
 
 ```javascript
 import { getAllHanziCharacters } from '@vearvip/hanzi-utils';
+
 const allHanzi = getAllHanziCharacters();
 console.log(allHanzi.slice(0, 10));
 // [ "一", "丁", "丂", "七", "丄", "丅", "丆", "万", "丈", "三"]
