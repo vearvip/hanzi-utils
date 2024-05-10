@@ -38,7 +38,7 @@ console.log(variants);
 // ['説', '說']
 ```
 
-#### 获取所有Unicode的汉字（截止Unicode 版本：15.1，本函数可返回`99142`个汉字）
+#### 获取所有Unicode的汉字（截止Unicode 版本：15.1，本函数可返回`99142`个汉字，实际只有`99139`个，因为部首扩展：2E9A 是空码位，兼容汉字：FA6E、FA6F 是空码位。）
 
 ```javascript
 const allHanzi = getAllHanziCharacters();
