@@ -43,3 +43,22 @@ export function unicodeLengthIgnoreSequence(str) {
   let segments = segmenter.segment(str);
   return [...segments].length;
 }
+
+// 函数检查一个字符是否是汉字
+function isHanzi(char) {
+  // 动态生成正则表达式
+  const hanziRegExps = unicodeHanziCodeList
+    .map(([start, end]) => {
+      if (!end) {
+        // 如果范围只有一个字符，则直接转换该字符
+        return `\\u{${start}}`;
+      } else {
+        // 如果范围有开始和结束，则生成U+XXXX U+YYYY格式的范围匹配
+        return `\\u{${start}}-\\u{${end}}`;
+      }
+    })
+    .join("");
+
+  const hanziRegExp = new RegExp(`^[${hanziRegExps}]$`, "u");
+  return hanziRegExp.test(char);
+}
