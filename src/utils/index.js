@@ -20,3 +20,10 @@ export const unicodeHanziCodeList = [
   ["31A0", "31BF"], // 注音扩展
   ["3007"], // 〇
 ];
+
+// 动态生成正则表达式
+export const hanziPattern = unicodeHanziCodeList
+  .map(([start, end]) =>
+    end === undefined ? `\\u{${start}}` : `\\u{${start}}-\\u{${end}}`,
+  )
+  .join("|");
