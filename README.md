@@ -71,6 +71,20 @@ console.log(str.length); // 输出：4
 console.log(strLength); // 输出：2
 ```
  
+#### 函数检查一个字符是否是汉字
+
+```javascript 
+console.log(isHanzi('汉')); // true
+console.log(isHanzi('A'));  // false
+console.log(isHanzi('𠀀')); // true
+```
+ 
+#### 提取字符串中的汉字
+
+```javascript
+console.log(extractHanzi('Hello, 世界! 𠀀✨ 你好，世界！')); // 输出: ["世", "界", "𠀀", "你", "好", "世", "界"]
+```
+ 
 
 ### 注意事项
 
