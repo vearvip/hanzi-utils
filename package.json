@@ -1,0 +1,24 @@
+{
+  "name": "@vearvip/hanzi-utils",
+  "version": "1.0.0-beta.1",
+  "description": "汉字处理相关的一些函数",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "vearvip",
+  "type": "module",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vearvip/hanzi-utils.git"
+  },
+  "bugs": {
+    "url": "https://github.com/vearvip/hanzi-utils/issues"
+  },
+  "homepage": "https://github.com/vearvip/hanzi-utils#readme",
+  "dependencies": {
+    "@vearvip/hanzi-variants": "^1.0.1"
+  }
+}
