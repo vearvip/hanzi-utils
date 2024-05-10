@@ -16,16 +16,7 @@ npm i @vearvip/hanzi-utils
 
 #### 引入模块
 
-首先，确保你已经将`@vearvip/hanzi-utils`引入到你的项目中。
-
-```javascript
-import {
-  getAllHanziCharacters,
-  unicode2Hanzi,
-  hanzi2Unicode,
-  unicodeLengthIgnoreSequence
-} from '@vearvip/hanzi-utils';
-```
+首先，确保你已经将`@vearvip/hanzi-utils`引入到你的项目中。 
 
 #### 查询汉字的异体字
 
@@ -41,6 +32,7 @@ console.log(variants);
 #### 获取所有Unicode的汉字（截止Unicode 版本：15.1，本函数可返回`99142`个汉字，实际只有`99139`个，因为部首扩展：2E9A 是空码位，兼容汉字：FA6E、FA6F 是空码位。）
 
 ```javascript
+import { getAllHanziCharacters } from '@vearvip/hanzi-utils';
 const allHanzi = getAllHanziCharacters();
 console.log(allHanzi.slice(0, 10));
 // [ "一", "丁", "丂", "七", "丄", "丅", "丆", "万", "丈", "三"]
@@ -51,6 +43,11 @@ console.log(allHanzi.length);
 #### Unicode编码与汉字字符的转换
 
 ```javascript
+import { 
+  unicode2Hanzi,
+  hanzi2Unicode, 
+} from '@vearvip/hanzi-utils';
+
 // Unicode编码转汉字字符
 const hexCode = '4E2D'; // '中'的Unicode编码
 const hanzi = unicode2Hanzi(hexCode);
@@ -65,6 +62,8 @@ console.log(unicode); // 输出：5B57
 #### 计算汉字字符串的长度
 
 ```javascript
+import { unicodeLengthIgnoreSequence } from '@vearvip/hanzi-utils';
+
 const str = '豕型';
 const strLength = unicodeLengthIgnoreSequence(str);
 console.log(str.length); // 输出：4
@@ -74,6 +73,8 @@ console.log(strLength); // 输出：2
 #### 函数检查一个字符是否是汉字
 
 ```javascript 
+import { isHanzi } from '@vearvip/hanzi-utils';
+
 console.log(isHanzi('汉')); // true
 console.log(isHanzi('A'));  // false
 console.log(isHanzi('𠀀')); // true
@@ -82,6 +83,8 @@ console.log(isHanzi('𠀀')); // true
 #### 提取字符串中的汉字
 
 ```javascript
+import { extractHanzi } from '@vearvip/hanzi-utils';
+
 console.log(extractHanzi('Hello, 世界! 𠀀✨ 你好，世界！')); // 输出: ["世", "界", "𠀀", "你", "好", "世", "界"]
 ```
  
