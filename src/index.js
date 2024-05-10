@@ -33,7 +33,7 @@ export function unicode2Hanzi(hexCode) {
 export function hanzi2Unicode(hanzi) {
   // 为了正确处理可能存在的代理对（surrogate pairs），使用了codePointAt
   const codePoint = hanzi.codePointAt(0);
-  // 返回十六进制的Unicode编码，前置 '0x' 表明是十六进制
+  // 返回十六进制的Unicode编码
   return codePoint.toString(16).toUpperCase().padStart(4, "0");
 }
 
