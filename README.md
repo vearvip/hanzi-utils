@@ -29,6 +29,23 @@ console.log(variants);
 // ['説', '說']
 ```
 
+#### 查询汉字在多种方言和语言中的读音,当前支持以下方言/语言的读音查询：
+- 普通话（mandarin）
+- 粤语（cantonese）
+- 日语音读（japaneseOn）
+- 日语训读（japaneseKun）
+- 韩语（korean）
+- 越南语（vietnamese）
+
+```js
+import { queryReading } from '@vearvip/hanzi-duyin';
+
+// 查询普通话读音
+const mandarinReading = await queryReading('汉', 'mandarin');
+console.log(`Mandarin reading of 汉: ${mandarinReading}`);
+// Mandarin reading of 汉: hàn
+```
+
 #### 获取所有Unicode的汉字（截止Unicode 版本：15.1，本函数可返回`99142`个汉字，实际只有`99139`个，因为部首扩展：2E9A 是空码位，兼容汉字：FA6E、FA6F 是空码位。）
 
 ```javascript
