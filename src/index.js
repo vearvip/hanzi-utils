@@ -3,7 +3,7 @@ import { unicodeHanziCodeList, hanziPattern } from "./utils";
 export { queryVariant } from "@vearvip/hanzi-variants";
 
 // 查询汉字在多种方言和语言中的读音，包括普通话、粤语、日语（音读/训读）、韩语、越南语
-export { queryReading } from "@vearvip/hanzi-duyin";
+export { queryReading } from "@vearvip/hanzi-readings";
 
 // 返回所有Unicode的汉字
 export function getAllHanziCharacters() {

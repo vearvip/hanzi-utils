@@ -38,7 +38,7 @@ console.log(variants);
 - 越南语（vietnamese）
 
 ```js
-import { queryReading } from '@vearvip/hanzi-duyin';
+import { queryReading } from '@vearvip/hanzi-utils';
 
 // 查询普通话读音
 const mandarinReading = await queryReading('汉', 'mandarin');
