@@ -1,0 +1,111 @@
+const axios = require('axios');
+const cheerio = require('cheerio');
+const fs = require('fs');
+
+const TIMEOUT = 10000; // 超时时间设置为10秒（10000毫秒）
+
+const unicodeHanziCodeList = [
+  ["4E00", "9FA5"], // 基本汉字
+  ["9FA6", "9FFF"], // 基本汉字补充
+  ["3400", "4DBF"], // 扩展A
+  ["20000", "2A6DF"], // 扩展B
+  ["2A700", "2B739"], // 扩展C
+  ["2B740", "2B81D"], // 扩展D
+  ["2B820", "2CEA1"], // 扩展E
+  ["2CEB0", "2EBE0"], // 扩展F
+  ["30000", "3134A"], // 扩展G
+  ["31350", "323AF"], // 扩展H
+  ["2EBF0", "2EE5D"], // 扩展I
+  ["2F00", "2FD5"], // 康熙部首
+  ["2E80", "2EF3"], // 部首扩展
+  ["F900", "FAD9"], // 兼容汉字
+  ["2F800", "2FA1D"], // 兼容扩展
+  ["31C0", "31E3"], // 汉字笔画
+  ["2FF0", "2FFF"], // 汉字结构
+  ["3105", "312F"], // 汉语注音
+  ["31A0", "31BF"], // 注音扩展
+  ["3007"], // 〇
+];
+function getAllHanziCharacters() {
+  const characters = [];
+
+  for (const range of unicodeHanziCodeList) {
+    let [start, end] = range;
+    if (end === undefined) {
+      // 处理单个字符
+      characters.push(String.fromCodePoint(parseInt(start, 16)));
+    } else {
+      // 处理字符范围
+      for (let code = parseInt(start, 16); code <= parseInt(end, 16); code++) {
+        characters.push(String.fromCodePoint(code));
+      }
+    }
+  }
+
+  return characters;
+}
+const hanziList = getAllHanziCharacters().map(ele => ({
+  hanzi: ele
+}));
+
+
+async function fetchHanziData(hanzi) {
+  try {
+    const url = `https://www.zdic.net/hans/${encodeURIComponent(hanzi)}`;
+    const response = await axios.get(url, { timeout: TIMEOUT });
+    // console.log('response', response.data)
+    // 加载HTML内容到Cheerio
+    const $ = cheerio.load(response.data);
+
+    // 提取数据
+    const bushou = $('.z_bs2 a').first().text().trim();
+    const bihuaRaw = $('.z_bs2 p:nth-child(3)').text().trim();
+    const bihuaMatch = bihuaRaw.match(/\d+/);
+    const bihua = bihuaMatch ? bihuaMatch[0] : '';
+    // const jiegou = $('.dsk_2_1').eq(1).text().trim();
+    // const wubi = $('.dsk_2_1 p').eq(0).text().trim().match(/[a-z]+/i)[0];
+    // const unicode = $('.dsk_2_1 p').eq(0).text().trim().match(/U\+[0-9A-F]+/i)[0];
+    // const tongyong = $('.dsk_2_1 p').eq(3).text().trim().match(/\d+/)[0];
+    // const xijiejieshi = $('.nr-box.nr-box-shiyi.jbjs .content.definitions.jnr').text().trim();
+
+    const data = {
+      bushou,
+      bihua,
+      // jiegou,
+      // wubi,
+      // unicode,
+      // tongyong,
+      // xijiejieshi
+    };
+
+
+    console.log('data', data)
+    return data;
+  } catch (error) {
+    console.error(`Error fetching data for hanzi: ${hanzi}, ${error}`);
+    return { hanzi, error: error.toString() };
+  }
+}
+
+(async () => {
+  const processHanziData = async (hanziList) => {
+    try {
+      const list = hanziList.map(hanziItem => {
+        return fetchHanziData(hanziItem.hanzi)
+      })
+      console.log('list', list)
+      const results = await Promise.all(list)
+      console.log('results', results)
+      return results;
+    } catch (error) {
+      console.error('error', error)
+      return []
+    }
+  };
+
+  const results = await processHanziData(hanziList);
+  // console.log('results', results)
+
+  // 将结果保存到文件
+  fs.writeFileSync('./hanzi_data.json', JSON.stringify(results, null, 2));
+})();
