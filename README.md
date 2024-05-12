@@ -29,6 +29,19 @@ console.log(variants);
 // ['説', '說']
 ```
 
+
+#### 查询汉字的部首、笔画
+
+```javascript 
+import { queryRadicalStrokeCounts } from '@vearvip/hanzi-utils';
+
+const hanzi = '额';
+const result = queryRadicalStrokeCounts(hanzi);
+console.log(result); // 输出：[ "页", 15 ]
+
+// 解释：汉字"额"的部首是"页"，总笔画数为15。
+```
+
 #### 查询汉字在多种方言和语言中的读音,当前支持以下方言/语言的读音查询：
 - 普通话（mandarin）
 - 粤语（cantonese）
