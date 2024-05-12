@@ -23,10 +23,11 @@ npm i @vearvip/hanzi-utils
 ```javascript 
 import { queryVariant } from '@vearvip/hanzi-utils';
 
-// 示例：查询“说”的异体字
-const variants = queryVariant('说');
-console.log(variants);
-// ['説', '說']
+const character = '说';
+const variants = queryVariant(character);
+
+console.log(`"${character}" 的异体字有：`, variants);
+// "说" 的异体字有： [ "說", "説" ]
 ```
 
 
