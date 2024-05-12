@@ -53,11 +53,21 @@ console.log(result); // 输出：[ "页", 15 ]
 ```js
 import { queryReading } from '@vearvip/hanzi-utils';
 
-// 查询普通话读音
-const mandarinReading = queryReading('汉', 'mandarin');
-console.log(`Mandarin reading of 汉: ${mandarinReading}`);
-// Mandarin reading of 汉: hàn
-```
+// 查询汉字“一”的粤语、日语、韩语、普通话及越南语读音
+const readings = queryReading('一');
+console.log(readings);
+/*
+输出:
+{
+  kCantonese: "jat1",
+  kJapaneseKun: "HITOTSU HITOTABI HAJIME",
+  kJapaneseOn: "ICHI ITSU",
+  kKorean: "IL",
+  kMandarin: "yī",
+  kVietnamese: "nhất",
+}
+*/
+``` 
 
 #### 获取所有Unicode的汉字（截止Unicode 版本：15.1，本函数可返回`99142`个汉字，实际只有`99139`个，因为部首扩展：2E9A 是空码位，兼容汉字：FA6E、FA6F 是空码位。）
 
