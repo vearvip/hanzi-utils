@@ -41,7 +41,7 @@ console.log(variants);
 import { queryReading } from '@vearvip/hanzi-utils';
 
 // 查询普通话读音
-const mandarinReading = await queryReading('汉', 'mandarin');
+const mandarinReading = queryReading('汉', 'mandarin');
 console.log(`Mandarin reading of 汉: ${mandarinReading}`);
 // Mandarin reading of 汉: hàn
 ```
