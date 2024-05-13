@@ -6,7 +6,7 @@ export { queryVariant } from "@vearvip/hanzi-variants";
 export { queryReading } from "@vearvip/hanzi-readings";
 
 // 查询汉字的部首、笔画
-export { queryRadicalStrokeCounts } from "@vearvip/hanzi-radical-stroke-counts";
+export { queryRadicalStrokeCount } from "@vearvip/hanzi-radical-stroke-counts";
 
 // 返回所有Unicode的汉字
 export function getAllHanziCharacters() {

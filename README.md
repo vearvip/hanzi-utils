@@ -34,10 +34,10 @@ console.log(`"${character}" 的异体字有：`, variants);
 #### 查询汉字的部首、笔画
 
 ```javascript 
-import { queryRadicalStrokeCounts } from '@vearvip/hanzi-utils';
+import { queryRadicalStrokeCount } from '@vearvip/hanzi-utils';
 
 const hanzi = '额';
-const result = queryRadicalStrokeCounts(hanzi);
+const result = queryRadicalStrokeCount(hanzi);
 console.log(result); // 输出：[ "页", 15 ]
 
 // 解释：汉字"额"的部首是"页"，总笔画数为15。
