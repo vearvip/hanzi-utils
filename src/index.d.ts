@@ -1,3 +1,8 @@
+// 直接从各自的包中导入并重新导出类型
+export { queryVariant } from "@vearvip/hanzi-variants";
+export { queryReading } from "@vearvip/hanzi-readings";
+export { queryRadicalStrokeCount } from "@vearvip/hanzi-radical-stroke-counts";
+
 // 返回所有Unicode的汉字
 export declare function getAllHanziCharacters(): string[];
 
