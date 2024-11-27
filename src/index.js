@@ -1,4 +1,4 @@
-import { unicodeHanziCodeList, hanziPattern } from "./utils";
+import { unicodeHanziCodeList, hanziRegExp } from "./utils";
 // 查询汉字的异体字
 export { queryVariant } from "@vearvip/hanzi-variants";
 
@@ -51,15 +51,17 @@ export function unicodeLengthIgnoreSequence(str) {
 }
 
 // 函数检查一个字符是否是汉字
-export function isHanzi(char) {
-  const hanziRegExp = new RegExp(`^[${hanziPattern}]$`, "u");
+export function isHanzi(char) { 
   return hanziRegExp.test(char);
 }
 
 // 提取字符串中的所有汉字
-export function extractHanzi(text) {
-  // 创建正则表达式
-  const hanziRegExp = new RegExp(`(${hanziPattern})`, "gu");
-  // 使用正则表达式找到匹配的汉字字符
-  return Array.from(text.matchAll(hanziRegExp)).map((match) => match[0]);
+export function extractHanzi(text) { 
+  const uniqueChars = new Set();
+  const matches = text.match(hanziRegExp);
+  if (matches) {
+      matches.forEach(char => uniqueChars.add(char));
+  }
+  return Array.from(uniqueChars);
 }
+

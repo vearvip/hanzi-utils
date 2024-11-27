@@ -22,8 +22,13 @@ export const unicodeHanziCodeList = [
 ];
 
 // 动态生成正则表达式
-export const hanziPattern = unicodeHanziCodeList
-  .map(([start, end]) =>
-    end === undefined ? `\\u{${start}}` : `\\u{${start}}-\\u{${end}}`,
-  )
-  .join("|");
+export const hanziPattern = unicodeHanziCodeList.map(range => {
+  if (range.length === 1) {
+    return `\\u{${range[0]}}`;
+  } else {
+    return `\\u{${range[0]}}-\\u{${range[1]}}`;
+  }
+}).join('|');
+
+
+export const hanziRegExp = new RegExp(`[${hanziPattern}]`, 'gu');
