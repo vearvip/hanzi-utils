@@ -1,6 +1,6 @@
 {
   "name": "@vearvip/hanzi-utils",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "汉字处理相关的一些函数",
   "main": "src/index.js",
   "scripts": {
