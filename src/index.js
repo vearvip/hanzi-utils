@@ -1,4 +1,4 @@
-import { unicodeHanziCodeList, hanziRegExp } from "./utils";
+import { unicodeHanziCodeList, hanziRegExp } from "./utils/index.js";
 // 查询汉字的异体字
 export { queryVariant } from "@vearvip/hanzi-variants";
 

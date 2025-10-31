@@ -1,6 +1,6 @@
 {
   "name": "@vearvip/hanzi-utils",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "汉字处理相关的一些函数",
   "main": "src/index.js",
   "scripts": {
@@ -20,7 +20,7 @@
   "homepage": "https://github.com/vearvip/hanzi-utils#readme",
   "dependencies": {
     "@vearvip/hanzi-radical-stroke-counts": "^1.0.5",
-    "@vearvip/hanzi-readings": "^1.0.6",
+    "@vearvip/hanzi-readings": "^1.0.7",
     "@vearvip/hanzi-variants": "^1.0.3"
   }
 }
