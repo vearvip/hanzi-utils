@@ -43,11 +43,17 @@ export function hanzi2Unicode(hanzi) {
   return codePoint.toString(16).toUpperCase().padStart(4, "0");
 }
 
-// 计算汉字字符串的长度（有多少个汉字）
-export function unicodeLengthIgnoreSequence(str) {
+
+// 根据单个Unicode字符来拆分字符串
+export function splitUnicodeStringIgnoreSequence(str) {
   let segmenter = new Intl.Segmenter();
   let segments = segmenter.segment(str);
-  return [...segments].length;
+  return [...segments]
+}
+
+// 计算汉字字符串的长度（有多少个汉字）
+export function unicodeLengthIgnoreSequence(str) {
+  return splitUnicodeStringIgnoreSequence(str).length;
 }
 
 // 函数检查一个字符是否是汉字
