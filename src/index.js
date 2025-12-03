@@ -48,7 +48,7 @@ export function hanzi2Unicode(hanzi) {
 export function splitUnicodeStringIgnoreSequence(str) {
   let segmenter = new Intl.Segmenter();
   let segments = segmenter.segment(str);
-  return [...segments]
+  return [...segments].map(ele => ele.segment)
 }
 
 // 计算汉字字符串的长度（有多少个汉字）
