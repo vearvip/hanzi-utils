@@ -130,7 +130,18 @@ const unicode = hanzi2Unicode(anotherHanzi);
 console.log(unicode); // 输出：5B57
 ```
 
-#### 计算汉字字符串的长度
+#### 根据unicode字符来split传入的字符串
+
+```javascript
+import { splitUnicodeStringIgnoreSequence } from '@vearvip/hanzi-utils';
+
+const str = '家庭👩‍👩‍👧‍👧';
+const charList = splitUnicodeStringIgnoreSequence(str);
+console.log(str.split('')); // 输出：['家', '庭', '\uD83D', '\uDC69', '‍', '\uD83D', '\uDC69', '‍', '\uD83D', '\uDC67', '‍', '\uD83D', '\uDC67']
+console.log(charList); // 输出：['家', '庭', '👩‍👩‍👧‍👧']
+```
+
+#### 计算unicode字符串的长度
 
 ```javascript
 import { unicodeLengthIgnoreSequence } from '@vearvip/hanzi-utils';
